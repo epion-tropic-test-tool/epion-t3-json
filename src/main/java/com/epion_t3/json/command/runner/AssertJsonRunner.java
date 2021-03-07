@@ -106,8 +106,6 @@ public class AssertJsonRunner extends AbstractCommandRunner<AssertJson> {
                         createJsonDiffList(e.getMessage(), expectedJsonObject, actualJsonObject, command.getIgnores()));
             }
         } catch (JSONException e) {
-            logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            e.printStackTrace();
             // 実行中のエラー
             commandResult.setAssertStatus(AssertStatus.NG);
             commandResult.setMessage(MessageManager.getInstance().getMessage(JsonMessages.JSON_ERR_9005));
