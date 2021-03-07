@@ -1,0 +1,203 @@
+t3: 1.0
+#####################################
+# 対象言語
+#####################################
+languages:
+  - ja_JP
+#####################################
+# カスタム機能定義
+#####################################
+info:
+  name: json
+  customPackage: com.epion_t3.json
+  summary:
+    - lang: ja_JP
+      contents: "JSONを扱う機能を提供します。"
+  description:
+    - lang: ja_JP
+      contents: "JSONを扱う機能を提供します。"
+#####################################
+# コマンド定義
+#####################################
+commands:
+  ##########################
+  # ExtractValue4JsonFileEvidence
+  ##########################
+  - id: ExtractValue4JsonFileEvidence
+    evidenceCommand: false
+    summary:
+      - lang: ja_JP
+        contents: "JSONから値を抽出して変数に設定します。"
+    testItem:
+      - order: 1
+        summary:
+          - lang: ja_JP
+            contents: "FlowID「${targetFlowId}」のJSONファイルエビデンスから、「${path}」に合致する要素を取得し、変数に設定します。"
+    function:
+      - order: 1
+        summary:
+          - lang: ja_JP
+            contents: "JSONから値を抽出して変数に設定します。"
+      - order: 2
+        summary:
+          - lang: ja_JP
+            contents: "パスの指定方法は、 [JsonPath](https://github.com/json-path/JsonPath) を参照してください。ライブラリとして利用しています。"
+      - order: 3
+        summary:
+          - lang: ja_JP
+            contents: "指定されたFlowIDがファイルエビデンスを保存していない場合絵エラーとなります。"
+    structure:
+      - order: 1
+        name: id
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: コマンドのID
+      - order: 2
+        name: command
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: 「ExtractValue4JsonFileEvidence」固定
+      - order: 3
+        name: summary
+        required: false
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: コマンドの概要（任意）
+      - order: 4
+        name: description
+        required: false
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: コマンドの詳細（任意）
+      - order: 5
+        name: target
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: "抽出した値を設定する変数名を指定します。"
+      - order: 6
+        name: targetFlowId
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: "抽出対象のJSONファイルエビデンスを取得したFlowIDを指定します。"
+      - order: 7
+        name: path
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: "JSONから値を抽出するためのパスを指定します。記載方法は [JsonPath](https://github.com/json-path/JsonPath) を参照してください。"
+  ##########################
+  # AssertJson
+  ##########################
+  - id: AssertJson
+    evidenceCommand: false
+    assertCommand: true
+    summary:
+      - lang: ja_JP
+        contents: "JSONを比較します。"
+    testItem:
+      - order: 1
+        summary:
+          - lang: ja_JP
+            contents: "JSON「${expectedPath}」のJSONと、FlowId「${actualFlowId}」のファイルエビデンスのJSONを比較します。"
+    function:
+      - order: 1
+        summary:
+          - lang: ja_JP
+            contents: "JSONを比較します。"
+      - order: 2
+        summary:
+          - lang: ja_JP
+            contents: "比較したくない要素は、ignoreに指定が可能です。"
+      - order: 3
+        summary:
+          - lang: ja_JP
+            contents: "比較したくない要素の指定方法は、 要素名をドットで連結したパスとしてください。"
+    structure:
+      - order: 1
+        name: id
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: コマンドのID
+      - order: 2
+        name: command
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: 「AssertJson」固定
+      - order: 3
+        name: summary
+        required: false
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: コマンドの概要（任意）
+      - order: 4
+        name: description
+        required: false
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: コマンドの詳細（任意）
+      - order: 5
+        name: expectedPath
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: "期待値のファイルパスを指定します。"
+      - order: 6
+        name: actualFlowId
+        required: true
+        type: string
+        summary:
+          - lang: ja_JP
+            contents: "結果値をエビデンスとして取得したFlowIdを指定します。"
+      - order: 7
+        name: ignores
+        required: false
+        type: array
+        summary:
+          - lang: ja_JP
+            contents: "比較を行いたくない要素をリストで設定します。比較したくない要素の指定方法は、 要素名をドットで連結したパスとしてください。"
+#####################################
+# メッセージ定義
+#####################################
+messages:
+  - id: com.epion_t3.json.inf.1001
+    message:
+      - lang: ja_JP
+        contents: "JSONは一致します."
+  - id: com.epion_t3.json.err.9001
+    message:
+      - lang: ja_JP
+        contents: "JSON解析に失敗しました."
+  - id: com.epion_t3.json.err.9002
+    message:
+      - lang: ja_JP
+        contents: "期待値のJSONが見つかりません.　パス:{0}"
+  - id: com.epion_t3.json.err.9003
+    message:
+      - lang: ja_JP
+        contents: "結果値のJSONが見つかりません.　パス:{0}, FlowId:{1}"
+  - id: com.epion_t3.json.err.9004
+    message:
+      - lang: ja_JP
+        contents: "JSONは一致しません."
+  - id: com.epion_t3.json.err.9005
+    message:
+      - lang: ja_JP
+        contents: "JSONの比較に失敗しました。"

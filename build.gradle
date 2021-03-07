@@ -14,10 +14,10 @@ ext {
     // バージョン定義
     versionMajor = 0
     versionMinor = 0
-    versionPatch = 1
+    versionPatch = 4
 
     // カスタムパッケージ名
-    customPackageName = 'custom'
+    customPackageName = 'json'
 
     // アーティファクト関連
     group 'com.epion_t3'
@@ -46,7 +46,12 @@ configurations {
 dependencies {
 
     // Core Library
-    api "com.epion_t3:epion-t3-core:0.0.4"
+//    api "com.epion_t3:epion-t3-core:0.0.4"
+    api project(':epion-t3-core-dev')
+    api "javax.json:javax.json-api:1.1"
+    api "org.glassfish:javax.json:1.1"
+    api "org.skyscreamer:jsonassert:1.5.0"
+    api "com.jayway.jsonpath:json-path:2.5.0"
 
     // For Develop
     compileOnly "org.projectlombok:lombok:1.18.6"
@@ -55,7 +60,7 @@ dependencies {
     testCompile "junit:junit:4.12"
 
     // devtools
-    devtoolsGenerator "com.epion_t3:epion-t3-devtools-generator:0.0.2"
+    devtoolsGenerator "com.epion_t3:epion-t3-devtools-generator:0.0.4"
 
 }
 
