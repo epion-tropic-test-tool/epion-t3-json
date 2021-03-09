@@ -46,8 +46,7 @@ configurations {
 dependencies {
 
     // Core Library
-//    api "com.epion_t3:epion-t3-core:0.0.4"
-    api project(':epion-t3-core-dev')
+    api "com.epion_t3:epion-t3-core:0.0.4"
     api "javax.json:javax.json-api:1.1"
     api "org.glassfish:javax.json:1.1"
     api "org.skyscreamer:jsonassert:1.5.0"
@@ -129,7 +128,8 @@ bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
     configurations = ['archives']
-
+    publish = true
+    override = true
     pkg {
         repo = 'maven'
         name = project.name
